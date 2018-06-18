@@ -1,0 +1,34 @@
+<!-- // views/recipes/index.ejs -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>All Recipes</title>
+  </head>
+  <body>
+    <h1>Check out these recipes:</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Ingredients</th>
+          <th>Avg. Cost</th>
+          <th>Last Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i = 0; i < recipes.length; i++) { %>
+          <tr>
+            <td><%= recipes[i].name %></td>
+            <td><%= recipes[i].author.name %></td>
+            <td><%= recipes[i].ingredients.join(', ').substr(0,10) + "..." %></td>
+            <td><%= recipes[i].averageCost %></td>
+            <td><%= recipes[i].lastUpdated %></td>
+            <td><a href="/recipes/<%= recipes[i]._id %>">More Info</a></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </body>
+</html>

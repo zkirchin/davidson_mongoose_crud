@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title><%= recipe.name %></title>
+  </head>
+  <body>
+    <h1><%= recipe.name %></h1>
+    <h3>Author: <a href="mailto:<%= recipe.author.email %>"><%= recipe.author.name %></a></h3>
+    <h3>Ingredients:</h3>
+    <ul>
+      <% for (let i = 0; i < recipe.ingredients.length; i++) { %>
+        <li><%= recipe.ingredients[i] %></li>
+      <% } %>
+    </ul>
+    <h3>Average Cost: <%= recipe.averageCost %></h3>
+    <p>Last Updated: <%= recipe.lastUpdate %></p>
+  </body>
+</html>
