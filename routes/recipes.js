@@ -42,6 +42,14 @@ router.post('/', function(req, res, next) {
 
 });
 
+
+// GET Author show
+router.get('/author/:name', function(req, res, next) {
+  Recipe.find({'author.name': req.params.name}).then((recipes) => {
+    res.render('recipes/author_show', {author: req.params.name, recipes: recipes});
+  });
+});
+
 // GET recipe show
 router.get('/:id', function(req, res, next) {
   Recipe.findOne({'_id': req.params.id }).then(function(recipe) {
@@ -49,9 +57,40 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-// GET Author show
-router.get('/author/:name', function(req, res, next) {
-  res.send('Recipes of the author: ' + req.params.name);
+// GET edit page
+router.get('/:id/edit', function(req, res, next) {
+  Recipe.findOne({'_id': req.params.id }).then(function(recipe) {
+    res.render('recipes/edit', {recipe: recipe});
+  });
 });
+
+// PUT Edit Route
+router.put('/:id', function(req, res, next) {
+  var recipeUpdate = {
+    name: req.body.name,
+    author: {
+      name: req.body.authorName,
+      email: req.body.authorEmail,
+    },
+    ingredients: req.body.ingredients.split(', '),
+    averageCost: req.body.averageCost,
+    lastUpdated: Date.now()
+  };
+
+  Recipe.findByIdAndUpdate(req.params.id, recipeUpdate, function(err, results) {
+    if (err) return res.send(500, {error: err});
+    console.log(results._id);
+    var recipeResultsId = results._id;
+    res.redirect('/recipes/'+ recipeResultsId);
+  })
+});
+
+router.delete(':id/delete', function(req, res, next){
+  Recipe.findByIdAndDelete(req.params.id, function(err, results) {
+    res.redirect('/recipes');
+  });
+});
+
+
 
 module.exports = router;

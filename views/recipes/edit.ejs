@@ -1,0 +1,42 @@
+<!-- views/recipes/edit.ejs -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Edit <%= recipe.name %></title>
+  </head>
+  <body>
+    <form class="" action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
+      <h1>Editing Recipe</h1>
+      <h3>Name of Recipe:</h3>
+      <!-- name -->
+      <input type="text" name="name" value="<%= recipe.name %>">
+
+      <h3>Author of Recipe:</h3>
+      <!-- author.name -->
+      <input type="text" name="authorName" value="<%= recipe.author.name %>">
+      <!-- author.email -->
+      <input type="email" name="authorEmail" value="<%= recipe.author.email %>">
+
+      <h3>Ingredients (place comma between ingredients):</h3>
+      <!-- ingredients -->
+      <input type="text" name="ingredients" value="<%= recipe.ingredients.join(', ') %>">
+
+      <h3>Average Cost:</h3>
+      <!-- averageCost -->
+      <input type="number" name="averageCost" value="<%= recipe.averageCost %>" step="0.01">
+
+      <button type="submit">Edit recipe</button>
+    </form>
+
+
+    <h2>Delete me!</h2>
+    <form class="" action="/recipes/<%= recipe._id %>/delete?_method=DELETE" method="POST">
+      <button type="submit">DELETE</button>
+    </form>
+
+    <%=  %>
+    <%  %>
+
+  </body>
+</html>

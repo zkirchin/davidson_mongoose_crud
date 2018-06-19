@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title><%= author %> Recipes</title>
+  </head>
+  <body>
+    <% for(let i = 0; i < recipes.length; i++){ %>
+      <h2><%= recipes[i].name %></h2>
+      <h3>Author: <%= author %></h3>
+      <h3>Ingredients</h3>
+      <ul>
+        <%- recipes[i].ingredients.reduce(((a, ingredient) => a + `<li>${ingredient}</li>`), "") %>
+      </ul>
+    <% } %>
+  </body>
+</html>
