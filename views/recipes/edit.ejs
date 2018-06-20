@@ -4,6 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>Edit <%= recipe.name %></title>
+    <link rel="stylesheet" href="/css/master.css" type="text/css">
   </head>
   <body>
     <form class="" action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
@@ -13,7 +14,7 @@
       <input type="text" name="name" value="<%= recipe.name %>">
 
       <h3>Author of Recipe:</h3>
-      <!-- author.name -->
+      <!-- author.name -->Go
       <input type="text" name="authorName" value="<%= recipe.author.name %>">
       <!-- author.email -->
       <input type="email" name="authorEmail" value="<%= recipe.author.email %>">
@@ -34,9 +35,6 @@
     <form class="" action="/recipes/<%= recipe._id %>/delete?_method=DELETE" method="POST">
       <button type="submit">DELETE</button>
     </form>
-
-    <%=  %>
-    <%  %>
 
   </body>
 </html>

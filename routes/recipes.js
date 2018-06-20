@@ -1,6 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var Recipe = require('../models/recipe');
+var nodemailer = require('nodemailer');
+
+// Mailer Transporter configuration
+var mailer = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: '',
+    pass: ''
+  }
+});
+
 
 /* GET recipes index. */
 router.get('/', function(req, res, next) {
@@ -35,8 +46,23 @@ router.post('/', function(req, res, next) {
   });
 
   recipe.save(function(err, results) {
-    console.log(results._id);
-    const recipeResultsId = results._id;
+    var mailOptions = {
+      from: 'zacharykirchin@email.com',
+      to: 'zack@techtalentsouth.com',
+      subject: 'A new recipe has been created!',
+      text: 'You have a new recipe to view!',
+      html: '<p>Check out the new' + results.name + 'recipe!</p>'
+    }
+
+    mailer.sendMail(mailOptions, function(error, info) {
+      if (error) {
+        return console.log(error);
+      }
+      console.log('Message sent:' + info.messageId);
+    });
+
+
+
     res.redirect('/recipes/' + recipeResultsId);
   });
 

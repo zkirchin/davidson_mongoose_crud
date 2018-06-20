@@ -1,0 +1,16 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+  <title><%= user.local.email %>'s Profile</title>
+</head>
+<body>
+  <h1> Profile Page</h1>
+  <a href="/logout">Logout</a>
+  <p>
+      <strong>id</strong>: <%= user._id %><br>
+      <strong>email</strong>: <%= user.local.email %><br>
+      <strong>password</strong>: <%= user.local.password %>
+  </p>
+</body>
+</html>

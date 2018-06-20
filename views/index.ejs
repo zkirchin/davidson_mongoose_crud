@@ -5,7 +5,16 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <% if(banners.message) { %>
+      <div>
+        Hello World!
+      </div>
+    <% } %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <!-- views/index.ejs -->
+    <p>Not signed in? Do so with:</p>
+    <a href="/login">Local Login</a> | <a href="/signup">Local Signup</a>
   </body>
 </html>
